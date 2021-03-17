@@ -6,7 +6,8 @@
   * @date:      2020-11-4
   * @brief:     stm8a CAN硬件ID过滤驱动，支持设置扩展ID或标准ID过滤
   * @attention: 1、stm8a的CAN模块支持硬件过滤ID，设置过滤ID后，只有收到符合要求的ID报文
-  *                 才会触发CAN接收中断。
+  *                 才会触发CAN接收中断。当can总线的报文非常多的时候，开启硬件ID过滤
+  *                 可以减轻cpu的压力。
   *             2、stm8a的CAN模块共有6组过滤器，CAN_FilterNumber_0到CAN_FilterNumber_5，
   *                 每组过滤器都是64bit大小
   *             3、每组过滤器在CAN_FilterMode_IdList模式下，可以过滤2个扩展ID，因此
