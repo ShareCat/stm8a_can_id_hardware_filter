@@ -140,23 +140,23 @@ void can_ext_id_filter(uint32_t *id, uint8_t num)
             //CAN_FilterMode = CAN_FilterMode_IdMask; /* 指定了过滤器将被初始化到的模式为标识符屏蔽位模式 */
             CAN_FilterMode = CAN_FilterMode_IdList;
             CAN_FilterScale = CAN_FilterScale_32Bit;/* 给出了过滤器位宽1个32位过滤器 */
-            printf("can id[0x%lx] ", temp_id[i * 2]);
+            //printf("can id[0x%lx] ", temp_id[i * 2]);
             temp = 0x11e00000 & (temp_id[i * 2] << 3);
             temp = temp | 0x00080000;   /* IDE = 1 表示扩展的id */
             temp_id[i * 2] = 0x0003fffe & (temp_id[i * 2] << 1);
             temp = temp | temp_id[i * 2];
-            printf("using filter[%d] = %08lx \r\n", i, temp);
+            //printf("using filter[%d] = %08lx \r\n", i, temp);
             CAN_FilterID1 = (uint8_t)(temp >> 24);
             CAN_FilterID2 = (uint8_t)(temp >> 16);
             CAN_FilterID3 = (uint8_t)(temp >> 8);
             CAN_FilterID4 = (uint8_t)temp;
 
-            printf("can id[0x%lx] ", temp_id[i * 2 + 1]);
+            //printf("can id[0x%lx] ", temp_id[i * 2 + 1]);
             temp = 0x11e00000 & (temp_id[i * 2 + 1] << 3);
             temp = temp | 0x00080000;   /* IDE = 1 表示扩展的id */
             temp_id[i * 2 + 1] = 0x0003fffe & (temp_id[i * 2 + 1] << 1);
             temp = temp | temp_id[i * 2 + 1];
-            printf("using filter[%d] = %08lx \r\n", i, temp);
+            //printf("using filter[%d] = %08lx \r\n", i, temp);
             CAN_FilterIDMask1 = (uint8_t)(temp >> 24);
             CAN_FilterIDMask2 = (uint8_t)(temp >> 16);
             CAN_FilterIDMask3 = (uint8_t)(temp >> 8);
@@ -220,8 +220,8 @@ void can_std_id_filter(uint16_t *id, uint8_t num)
             //CAN_FilterMode = CAN_FilterMode_IdMask; /* 指定了过滤器将被初始化到的模式为标识符屏蔽位模式 */
             CAN_FilterMode = CAN_FilterMode_IdList;
             CAN_FilterScale = CAN_FilterScale_16Bit;/* 给出了过滤器位宽1个16位过滤器 */
-            printf("using filter[%d]: id[0x%x] id[0x%x] id[0x%x] id[0x%x] \r\n",
-                   i, temp_id[i * 4], temp_id[i * 4 + 1], temp_id[i * 4 + 2], temp_id[i * 4 + 3]);
+            //printf("using filter[%d]: id[0x%x] id[0x%x] id[0x%x] id[0x%x] \r\n",
+            //       i, temp_id[i * 4], temp_id[i * 4 + 1], temp_id[i * 4 + 2], temp_id[i * 4 + 3]);
             CAN_FilterID1 = (uint8_t)(temp_id[i * 4] >> 3);
             CAN_FilterID2 = (uint8_t)temp_id[i * 4] << 5;
             CAN_FilterID3 = (uint8_t)(temp_id[i * 4 + 1] >> 3);
