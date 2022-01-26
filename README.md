@@ -11,3 +11,28 @@
 - 每组过滤器在CAN_FilterMode_IdList模式下，可以过滤4个标准ID，因此总共可以过滤24个标准ID。
 
 - 由于项目原因无法分享整个工程，只能分享过滤ID部分的代码，有问题欢迎提出。
+
+### Demo
+```cpp
+/**
+ * @brief  can_init
+ * @param  None
+ * @retval None
+ */
+void can_init(void)
+{
+    #ifdef CAN_ID_FILTER_EXTEND
+    uint32_t test_id_list[] = {0x436, 0x4c9, 0X09c, 0x17d, 0x1f1, 0x140, 0x1e5, 0x53b, 0x120, 0x430};
+    #else
+    uint16_t test_id_list[] = {0x436, 0x4c9, 0X09c, 0x17d, 0x1f1, 0x140, 0x1e5, 0x53b, 0x120, 0x430};
+    #endif
+
+    memset(&can_filter_id, 0x00, sizeof(struct can_filter_id_s));
+
+    #ifdef CAN_ID_FILTER_EXTEND
+    can_gpio_init(test_id_list, sizeof(test_id_list) / sizeof(uint32_t));
+    #else
+    can_gpio_init(test_id_list, sizeof(test_id_list) / sizeof(uint16_t));
+    #endif
+}
+```
