@@ -21,18 +21,12 @@
  */
 void can_init(void)
 {
-    #ifdef CAN_ID_FILTER_EXTEND
+#ifdef CAN_ID_FILTER_EXTEND
     uint32_t test_id_list[] = {0x436, 0x4c9, 0X09c, 0x17d, 0x1f1, 0x140, 0x1e5, 0x53b, 0x120, 0x430};
-    #else
-    uint16_t test_id_list[] = {0x436, 0x4c9, 0X09c, 0x17d, 0x1f1, 0x140, 0x1e5, 0x53b, 0x120, 0x430};
-    #endif
-
-    memset(&can_filter_id, 0x00, sizeof(struct can_filter_id_s));
-
-    #ifdef CAN_ID_FILTER_EXTEND
     can_gpio_init(test_id_list, sizeof(test_id_list) / sizeof(uint32_t));
-    #else
+#else
+    uint16_t test_id_list[] = {0x436, 0x4c9, 0X09c, 0x17d, 0x1f1, 0x140, 0x1e5, 0x53b, 0x120, 0x430};
     can_gpio_init(test_id_list, sizeof(test_id_list) / sizeof(uint16_t));
-    #endif
+#endif
 }
 ```
